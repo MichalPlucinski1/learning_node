@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Pillow Store</title></head>
+<body>
+    <h1>Welcome to the Pillow Store!</h1>
+    <% if (message) { %>
+        <p><strong><%= message %></strong></p>
+    <% } %>
+    <a href="/cart">Go to Cart</a>
+    <ul>
+        <% products.forEach(product => { %>
+            <li>
+                <img src="/images/<%= product.image %>" width="100" />
+                <h2><%= product.name %></h2>
+                <p><%= product.description %></p>
+                <p>Available: <%= product.quantity %></p>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="productId" value="<%= product.id %>" />
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
